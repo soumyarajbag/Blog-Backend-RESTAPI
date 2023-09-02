@@ -4,9 +4,8 @@ const mongoose = require("mongoose");
 const router = require("./routes/userRoutes.js");
 const cors = require("cors");
 const blogRouter = require("./routes/blogRoutes.js");
-
-
-
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -18,6 +17,7 @@ app.use(cors({
 }));
 app.use("/", (req, res) => {
   res.send("Hello World");
+  console.log("Swapnendu Valo Chhele")
 });
 
 
