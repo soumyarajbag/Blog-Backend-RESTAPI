@@ -1,7 +1,7 @@
-import Blog from "../models/Blog.js";
-import User from "../models/User.js";
+const {Blog}  = require("../models/Blog.js");
+const {User}  = require("../models/User.js");
 
-export const getAllBlogs = async (req , res ,next)=>{
+ const getAllBlogs = async (req , res ,next)=>{
     let blogs ;
     try{
         blogs = await Blog.find();
@@ -15,7 +15,7 @@ export const getAllBlogs = async (req , res ,next)=>{
     return res.status(200).json({blogs});
 };
 
-export const addBlog = async (req , res , next)=>{
+ const addBlog = async (req , res , next)=>{
     let {title , description , image , user} = req.body;
     let existingUser ;
     try{
@@ -49,7 +49,7 @@ export const addBlog = async (req , res , next)=>{
    return res.status(201).json({blog , message : "New Blog Created"});
 };
 
-export const updateBlog = async (req, res, next )=>{
+ const updateBlog = async (req, res, next )=>{
     const {title , description } = req.body;
       const blogId = req.params.id ;
       let blog ;
@@ -69,7 +69,7 @@ export const updateBlog = async (req, res, next )=>{
       return res.status(200).json({ blog , message : "Blog Updated Successfully !"});
 };
 
-export const getBlogbyId = async (req , res , next)=>{
+ const getBlogbyId = async (req , res , next)=>{
     const blogId = req.params.id ;
     let blog ;
     try{
@@ -84,7 +84,7 @@ export const getBlogbyId = async (req , res , next)=>{
     return res.status(200).json({blog});
 } ;
 
-export const DeleteBlog =async (req , res , next)=>{
+ const DeleteBlog =async (req , res , next)=>{
     const blogId = req.params.id ;
     let blog ;
     try{
@@ -102,7 +102,7 @@ export const DeleteBlog =async (req , res , next)=>{
 
 };
 
-export const getUserBlogs = async (req , res , next)=>{
+ const getUserBlogs = async (req , res , next)=>{
     const userId = req.params.id ;
     let userBlogs ;
     try{
@@ -117,4 +117,4 @@ export const getUserBlogs = async (req , res , next)=>{
     }
     return res.status(200).json({userBlogs});
 }
-
+module.exports = {getAllBlogs , addBlog , updateBlog , getBlogbyId , DeleteBlog , getUserBlogs}

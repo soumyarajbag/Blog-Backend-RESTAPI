@@ -14,7 +14,10 @@
       {
         "src":"/blog",
         "dest":"/index.js"
+      },
+      {
+        "src": ".*",
+        "dest": "/index.js"
       }
- 
     ]
   }

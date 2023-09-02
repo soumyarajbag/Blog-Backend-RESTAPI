@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
     name : {
@@ -19,4 +19,5 @@ const UserSchema = new mongoose.Schema({
     blogs:[{type : mongoose.Schema.Types.ObjectId , ref : "Blog" , required : true }]
 });
 
-export default mongoose.model("User", UserSchema);
+
+module.exports = {User : mongoose.model("User", UserSchema)};

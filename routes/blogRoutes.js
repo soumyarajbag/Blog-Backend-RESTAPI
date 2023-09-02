@@ -1,5 +1,5 @@
-import express from 'express';
-import { getAllBlogs , addBlog ,updateBlog , getBlogbyId , DeleteBlog , getUserBlogs } from '../controllers/blogController.js';
+const express = require("express");
+const { getAllBlogs , addBlog ,updateBlog , getBlogbyId , DeleteBlog , getUserBlogs } = require('../controllers/blogController.js');
 
 
 const blogRouter = express.Router();
@@ -11,4 +11,4 @@ blogRouter.get('/:id' , getBlogbyId );
 blogRouter.delete('/delete/:id' , DeleteBlog);
 blogRouter.get('/user/:id' , getUserBlogs);
 
-export default blogRouter ;
+module.exports = blogRouter ;

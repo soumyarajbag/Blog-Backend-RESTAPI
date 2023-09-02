@@ -1,6 +1,6 @@
-import User from "../models/User.js";
-import bcrypt from "bcryptjs";
-export const getAllUsers = async (req, res, next) => {
+const {User} = require("../models/User.js");
+const bcrypt = require("bcryptjs");
+ const getAllUsers = async (req, res, next) => {
   let users;
   try {
     users = await User.find();
@@ -13,7 +13,7 @@ export const getAllUsers = async (req, res, next) => {
   res.status(200).json({ users });
 };
 
-export const AddNewUser = async (req, res, next) => {
+ const AddNewUser = async (req, res, next) => {
   let { name, email, password } = req.body;
   console.log(req.body);
   const hashedPass = bcrypt.hashSync(password, 6);
@@ -40,7 +40,7 @@ export const AddNewUser = async (req, res, next) => {
   return res.status(201).json({ user, message: "New User Created" });
 };
 
-export const LoginUser = async (req, res, next) => {
+ const LoginUser = async (req, res, next) => {
   const { email, password } = req.body;
   let existingUser;
   try {
@@ -58,3 +58,5 @@ export const LoginUser = async (req, res, next) => {
   }
   return res.status(200).json({ message: "Logged In" });
 };
+
+module.exports = { getAllUsers, AddNewUser, LoginUser };
