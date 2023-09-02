@@ -5,22 +5,30 @@ import cors from "cors";
 import blogRouter from "./routes/blogRoutes.js";
 const app = express();
 app.use(express.json());
-app.use("/api/user", router);
-app.use("/api/blog", blogRouter);
+app.use("/user", router);
+app.use("/blog", blogRouter);
 
-app.use(cors());
-mongoose
-  .connect(
-    "mongodb+srv://soumyarajbag:bag9102003@cluster0.kqkapur.mongodb.net/Blog?retryWrites=true&w=majority"
-  )
-  .then(() => {
-    app.listen(5000);
-  }).then(()=>{
-    console.log("Connected to Database");
-  }).catch((err)=>{
-    console.log(err);
-  });
-app.use("/api", (req, res, next) => {
+app.use(cors({
+  origin : "*" ,
+}));
+app.use("/", (req, res, next) => {
   res.send("Hello World");
 });
+
+const mongooseUri = process.env.MONGO_URI; 
+
+mongoose
+  .connect(mongooseUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(process.env.PORT || 3000, () => {
+      console.log("Your Server is running");
+    });
+  })
+  .catch((error) => {
+    console.log("Error connecting to MongoDB:", error);
+  });
+
 
