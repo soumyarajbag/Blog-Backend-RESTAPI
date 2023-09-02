@@ -11,9 +11,10 @@ app.use("/blog", blogRouter);
 app.use(cors({
   origin : "*" ,
 }));
-app.use("/", (req, res, next) => {
+app.use("/", (req, res) => {
   res.send("Hello World");
 });
+
 
 const mongooseUri = process.env.MONGO_URI; 
 
